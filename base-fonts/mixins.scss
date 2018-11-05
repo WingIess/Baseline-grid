@@ -1,0 +1,240 @@
+// PICKS OUT A PROPERTY FROM THE FONT DATABASE
+@function font-property($font-name, $property) {
+    @for $i from 1 to $config-length {
+        $font-name-index:#{$i};
+        $font: map-get(map-get($dfr-config, 'font' + $font-name-index), "name");
+
+        @if $font == $font-name {
+            @return #{map-get(map-get($dfr-config, 'font' + $font-name-index), "#{$property}")};
+        }
+    }
+}
+
+// CHECKS IF THE INPUT SIZE FIT INTO THE DESIGN TEMPLATE
+@mixin warning-handler($space, $shutup: 0) {
+    @if $shutup != 777 {
+        $spaces: map-get($dfr-config, spaces);
+        $spaces-length: length($spaces);
+        $lower: 0;
+        $upper: 0;
+    
+        $k: 0;
+        @while nth($spaces, $k + 1) < $space and $k < $spaces-length - 1 {
+            $k: $k + 1;
+        }
+    
+        @if $k <= $spaces-length and $k > 0 {
+            $lower: nth($spaces, $k);
+        }
+        @if nth($spaces, $spaces-length) < $space {
+            $lower: nth($spaces, $spaces-length);
+        }
+        @if nth($spaces, $k + 1) == $space {
+            $lower: 0;
+        }
+    
+        $j: 9;
+        @while nth($spaces, $j) > $space and $j > 1 {
+            $j: $j - 1;
+        }
+        
+        @if $j <= $spaces-length and $j < $spaces-length {
+            $upper: nth($spaces, $j + 1);
+        }
+        @if nth($spaces, 1) > $space {
+            $upper: nth($spaces, 1);
+        }
+        @if nth($spaces, $j) == $space {
+            $upper: 0;
+        }
+        @if $space != 0rem {
+            @if $upper != 0 and $lower != 0 {
+                @warn '||| === WARNING THIS SIZE: #{$space} DOES NOT MATCH THE TEMPLATE! = > CLOSEST SIZES: #{$lower} AND #{$upper} === |||';
+            }
+            @else if $upper == 0 and $lower > 0 {
+            @warn '||| === WARNING THIS SIZE: #{$space} DOES NOT MATCH THE TEMPLATE! = > CLOSEST SIZE: #{$lower} lower === |||';
+            }
+            @else if $lower == 0 and $upper > 0 {
+                @warn '||| === WARNING THIS SIZE: #{$space} DOES NOT MATCH THE TEMPLATE! = > CLOSEST SIZE: #{$upper} === |||';
+            }
+        }
+    }
+}
+$dfr-true: ();
+// UNDER DEVELOPMENT
+@mixin custom-font($myMap) {
+    $dfr-true: map-merge($dfr-config,$myMap);
+}
+$myMap: (
+    'font#{$config-length}': (
+        'name': 'sz',
+        'font-family': ('Open Sans', sans-serif),
+        'font-weight': 'bold',
+        'font-size': 6rem,
+        'line-height': 7.2rem,
+        'padding-top': .4rem,
+        'margin-bottom': -.4rem
+    )
+);
+@include custom-font($myMap);
+@warn $dfr-true;
+
+@mixin font-exists($font) {
+    $i: 1;
+    $font-name-index: '1';
+    $font-length: str-length($font);
+    $font-start: '';
+    @if $font-length > 2 {
+        $font-start: str-slice($font,3,$font-length);
+    }
+
+    @while $i < $config-length and map-get(map-get($dfr-config, 'font' + $font-name-index), "name") != $font and $font-start != map-get(map-get($dfr-config, 'font' + $font-name-index), "name") {
+        $font-name-index: #{$i};
+        $i: $i + 1;
+    }
+
+    @if $i == $config-length {
+        @error 'ERROR UNKNOWN FONT NAME! EXAMPLE SYNTAX FOR FONTS: OBb14 / B-R14';
+    }
+}
+
+@mixin get-font($input-font) {
+    @include font-exists($input-font);
+    
+    font-family: font-property($input-font, font-family);
+    font-weight:font-property($input-font, font-weight);
+    font-size: font-property($input-font, font-size);
+    line-height: font-property($input-font, line-height);
+    padding-top: font-property($input-font, padding-top);
+    margin-bottom: font-property($input-font, margin-bottom);
+}
+
+@mixin get-regular-font($input-font) {
+    @include font-exists($input-font);
+
+    @include font-exists($input-font);
+    font-family: font-property($input-font, font-family);
+    font-weight:font-property($input-font, font-weight);
+    font-size: font-property($input-font, font-size);
+    line-height: font-property($input-font, line-height);
+}
+
+// MARGIN TOP CALCULATOR FOR FONTS
+// IF YOU WANT TO GIVE YOUR FONTS A MARGIN TOP USE THIS
+// IT CALCULATES THE MARGIN FROM THE BOTTOM OF THE FIRST ROW
+@mixin margin-top($font-name-input, $margin, $shutup: 0) {
+    @include warning-handler($margin, $shutup);
+
+    @include font-exists($font-name-input);
+    $line-height: font-property($font-name-input, line-height);
+    $font-size: font-property($font-name-input, font-size);
+
+    margin-top: calc(#{$margin} - #{$line-height});
+}
+
+// THIS IS FOR THE CONTAINER BLOCKS IF YOU PUT THE FONT TYPES ON THE CONTAINER ITSELF
+// THE FONT WILL MAKE A PADDING TOP ON THE CONTAINER TO MAKE SURE THE FONT IS ON THE SASSLINE TEMPLATE
+// SO IF YOU WANT TO ADD PADDING TOP ON A CONTAINER USE THIS!!
+@mixin padding-top($font-name-input, $container-padding, $shutup:0) {
+    @include font-exists($font-name-input);
+
+    @include warning-handler($container-padding, $shutup);
+
+    $font-padding: font-property($font-name-input, padding-top);
+
+    padding-top: calc(#{$font-padding} + #{$container-padding});
+}
+
+// THIS IS FOR THE FONTS MARGIN BOTTOM CALCULATION BECAUSE OF SASSLINE THE FONTS HAVE A NEGATIVE MARGIN
+// SO YOU HAVE TO BALANCE IT OUT
+// USE THIS MIXIN FOR THAT
+@mixin margin-bottom($font-name-input, $margin, $shutUp: 0) {
+    @include font-exists($font-name-input);
+
+    @include warning-handler($margin, $shutUp);
+
+    $font-margin: font-property($font-name-input, margin-bottom);
+
+    margin-bottom: calc(#{$margin} + #{$font-margin});
+}
+
+@mixin sassline($font, $font-margin-top: 0, $font-margin-bottom: 0,$font-padding-top: 0,$font-padding-bottom: 0, $shutUp: 0) {
+
+    $kill: 0;
+
+    @if $font-margin-top == $shutup or $font-margin-bottom == $shutup or $font-padding-top == $shutup or $font-padding-bottom == $shutup or $shutUp == $shutup {
+        $kill: $shutup;
+    }
+
+    $font-start: str-slice($font, 1, 2);
+
+    @if $font-start != 'B-' {
+
+        @include get-font($font);
+
+        @if $font-margin-top != 0 and $font-margin-top != $shutup {
+            @include margin-top($font, $font-margin-top,$kill);
+        }
+        @if $font-margin-bottom != 0 and $font-margin-bottom != $shutup {
+            @include margin-bottom($font, $font-margin-bottom,$kill);
+        }
+        @if $font-padding-top != 0 and $font-padding-top != $shutup {
+            @include padding-top($font, $font-padding-top, $kill);
+        }
+        @if $font-padding-bottom != 0 and  $font-padding-bottom != $shutup {
+            @include warning-handler($font-padding-bottom, $kill);
+            padding-bottom: $font-padding-bottom;
+        }
+
+    } @else {
+
+        // FOR REUSABLITY PURPOSE WE WILL CUT THE FONT NAME TO ITS ORIGINAL VERSION
+        
+        $font-length: str-length($font);
+        $font-input: str-slice($font,3,$font-length);
+
+        @include get-regular-font($font-input);
+
+        @if $font-margin-top != 0 and  $font-margin-top != $shutup {
+            @include margin-top($font-input, $font-margin-top,$kill);
+        }
+        @if $font-margin-bottom != 0 and $font-margin-bottom != $shutup {
+            @include warning-handler($font-margin-bottom, $kill);
+            margin-bottom: $font-margin-bottom;
+        }
+        @if $font-padding-top != 0 and $font-padding-top != $shutup {
+            $font-height: font-property($font-input, line-height);
+            padding-top: calc(#{$font-height} + #{$font-padding-top});
+        }
+        @if $font-padding-bottom != 0 and $font-padding-bottom != $shutup {
+            @include warning-handler($font-padding-bottom, $kill);
+            padding-bottom: $font-padding-bottom;
+        }
+    }
+}
+
+@mixin shadow() {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: box-shadow var(--fast);
+}
+
+@mixin shadow-hover() {
+    @include shadow;
+    &:hover {
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+    }
+}
+
+@mixin border-radius() {
+    border-radius: 6px;
+
+    @include media(phone) {
+        border-radius: 0;
+    }
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
