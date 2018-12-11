@@ -1,0 +1,5 @@
+:root {
+    --apertus-gutter: 20px;
+    --apertus-inner-space: 1180px;
+    --apertus-col-max-width: calc((var(--apertus-inner-space) - 11 * var(--gutter)) / 12);
+}

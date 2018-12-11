@@ -1,0 +1,281 @@
+// ALL FONTS IS POSITIONED ON THEIR LINE-HEIGHTS BOTTOM
+// THERE IS ONE PLUS MAP IN THE DFR-CONFIG SO THE RANGE IS JUST LENGTH
+// FONT DATABASE
+
+$dfr-config: (
+    'spaces': (
+        1.2rem,
+        1.8rem,
+        2.4rem,
+        3.6rem,
+        5.4rem,
+        7.8rem,
+        11.4rem,
+        15.6rem,
+        20.4rem
+    ),
+    'font1': (
+        'name': 'R14',
+        'font-family': (
+            'Roboto',
+            sans-serif
+        ),
+        'font-weight': 'normal',
+        'font-size': 1.4rem,
+        'line-height': 2.1rem,
+        'padding-top': 0.55rem,
+        'margin-bottom': -0.55rem
+    ),
+    'font2': (
+        'name': 'Rb14',
+        'font-family': (
+            'Roboto',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 1.4rem,
+        'line-height': 2.1rem,
+        'margin-bottom': -0.568rem,
+        'padding-top': 0.568rem
+    ),
+    'font3': (
+        'name': 'OS14',
+        'font-family': (
+            'Open Sans',
+            sans-serif
+        ),
+        'font-weight': 'normal',
+        'font-size': 1.4rem,
+        'line-height': 2.1rem,
+        'margin-bottom': -0.51rem,
+        'padding-top': 0.51rem
+    ),
+    'font4': (
+        'name': 'OSb14',
+        'font-family': (
+            'Open Sans',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 1.4rem,
+        'line-height': 2.1rem,
+        'margin-bottom': -0.51rem,
+        'padding-top': 0.51rem
+    ),
+    'font5': (
+        'name': 'R16',
+        'font-family': (
+            'Roboto',
+            sans-serif
+        ),
+        'font-weight': 'normal',
+        'font-size': 1.6rem,
+        'line-height': 2.4rem,
+        'padding-top': 0.63rem,
+        'margin-bottom': -0.63rem
+    ),
+    'font6': (
+        'name': 'Rb16',
+        'font-family': (
+            'Roboto',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 1.6rem,
+        'line-height': 2.4rem,
+        'margin-bottom': -0.63rem,
+        'padding-top': 0.635rem
+    ),
+    'font7': (
+        'name': 'OS16',
+        'font-family': (
+            'Open Sans',
+            sans-serif
+        ),
+        'font-weight': 'normal',
+        'font-size': 1.6rem,
+        'line-height': 2.4rem,
+        'margin-bottom': -0.57rem,
+        'padding-top': 0.57rem
+    ),
+    'font8': (
+        'name': 'OSb16',
+        'font-family': (
+            'Open Sans',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 1.6rem,
+        'line-height': 2.4rem,
+        'margin-bottom': -0.57rem,
+        'padding-top': 0.57rem
+    ),
+    'font9': (
+        'name': 'R20',
+        'font-family': (
+            'Roboto',
+            sans-serif
+        ),
+        'font-weight': 'normal',
+        'font-size': 2rem,
+        'line-height': 3rem,
+        'padding-top': 0.79rem,
+        'margin-bottom': -0.79rem
+    ),
+    'font10': (
+        'name': 'Rb20',
+        'font-family': (
+            'Roboto',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 2rem,
+        'line-height': 3rem,
+        'margin-bottom': -0.79rem,
+        'padding-top': 0.79rem
+    ),
+    'font11': (
+        'name': 'OS20',
+        'font-family': (
+            'Open Sans',
+            sans-serif
+        ),
+        'font-weight': 'normal',
+        'font-size': 2rem,
+        'line-height': 3rem,
+        'margin-bottom': -0.71rem,
+        'padding-top': 0.71rem
+    ),
+    'font12': (
+        'name': 'OSb20',
+        'font-family': (
+            'Open Sans',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 2rem,
+        'line-height': 3rem,
+        'margin-bottom': -0.71rem,
+        'padding-top': 0.71rem
+    ),
+    'font13': (
+        'name': 'R25',
+        'font-family': (
+            'Roboto',
+            sans-serif
+        ),
+        'font-weight': 'normal',
+        'font-size': 2.5rem,
+        'line-height': 3.6rem,
+        'padding-top': 0.91rem,
+        'margin-bottom': -0.91rem
+    ),
+    'font14': (
+        'name': 'Rb25',
+        'font-family': (
+            'Roboto',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 2.5rem,
+        'line-height': 3rem,
+        'margin-bottom': -0.61rem,
+        'padding-top': 0.61rem
+    ),
+    'font15': (
+        'name': 'OS25',
+        'font-family': (
+            'Open Sans',
+            sans-serif
+        ),
+        'font-weight': 'normal',
+        'font-size': 2.5rem,
+        'line-height': 3.6rem,
+        'margin-bottom': -0.83rem,
+        'padding-top': 0.83rem
+    ),
+    'font16': (
+        'name': 'OSb25',
+        'font-family': (
+            'Open Sans',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 2.5rem,
+        'line-height': 3rem,
+        'margin-bottom': -0.53rem,
+        'padding-top': 0.53rem
+    ),
+    'font17': (
+        'name': 'Rb31',
+        'font-family': (
+            'Roboto',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 3.1rem,
+        'line-height': 3.6rem,
+        'margin-bottom': -0.71rem,
+        'padding-top': 0.71rem
+    ),
+    'font18': (
+        'name': 'OSb31',
+        'font-family': (
+            'Open Sans',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 3.1rem,
+        'line-height': 3.6rem,
+        'padding-top': 0.6rem,
+        'margin-bottom': -0.6rem
+    ),
+    'font19': (
+        'name': 'Rb39',
+        'font-family': (
+            'Roboto',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 3.9rem,
+        'line-height': 4.8rem,
+        'padding-top': 1.03rem,
+        'margin-bottom': -1.03rem
+    ),
+    'font20': (
+        'name': 'OSb39',
+        'font-family': (
+            'Open Sans',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 3.9rem,
+        'line-height': 4.8rem,
+        'padding-top': 0.89rem,
+        'margin-bottom': -0.89rem
+    ),
+    'font21': (
+        'name': 'Rb48',
+        'font-family': (
+            'Roboto',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 4.8rem,
+        'line-height': 5.4rem,
+        'padding-top': 1.01rem,
+        'margin-bottom': -1.01rem
+    ),
+    'font22': (
+        'name': 'OSb48',
+        'font-family': (
+            'Open Sans',
+            sans-serif
+        ),
+        'font-weight': 'bold',
+        'font-size': 4.8rem,
+        'line-height': 5.4rem,
+        'padding-top': 0.84rem,
+        'margin-bottom': -0.84rem
+    )
+);

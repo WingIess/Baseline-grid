@@ -1,0 +1,19 @@
+
+@mixin fullGrid() {
+    display: grid;
+    grid-gap: var(--apertus-gutter);
+    grid-template-columns: [full-start] minmax(0, 1fr) [main-start] repeat(
+            12,
+            [col-start] minmax(0, var(--apertuscol-max-width)) [col-end]
+        ) [main-end] minmax(0, 1fr) [full-end];
+    grid-template-rows: min-content;
+}
+
+@mixin gridColumns() {
+    display: grid;
+    grid-column-gap: var(--apertus-gutter);
+    grid-template-columns: [full-start] minmax(0, 1fr) [main-start] repeat(
+            12,
+            [col-start] minmax(0, var(--apertuscol-max-width)) [col-end]
+        ) [main-end] minmax(0, 1fr) [full-end];
+}

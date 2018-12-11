@@ -1,0 +1,13 @@
+.shadow {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-hover {
+    @extend .shadow;
+
+    transition: box-shadow .3s;
+
+    &:hover {
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2) !important;
+    }
+}

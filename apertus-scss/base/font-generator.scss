@@ -1,0 +1,29 @@
+// FONT CLASS GENERATOR (it generates the fonts from the font database [dfr-config])
+// YOU CAN GET THE FONT TYPES BY EXTENDING TO THE CLASS NAME
+// THE CLASS NAME FALLOWS THE OF A CERTAIN TEMPLATE
+// 'B-' or '' + FONT NAME + '-' + 'b' OR '' + FONT SIZE
+
+@for $i from 1 to $config-length {
+    $map: #{$i};
+
+    .#{map-get(map-get($dfr-config, 'font' + $map), "name")} {
+        font-family: #{map-get(map-get($dfr-config, 'font' + $map), "font-family")};
+        font-weight: #{map-get(map-get($dfr-config, 'font' + $map), "font-weight")};
+        font-size: #{map-get(map-get($dfr-config, 'font' + $map), "font-size")};
+        line-height: #{map-get(map-get($dfr-config, 'font' + $map), "line-height")};
+        padding-top: #{map-get(map-get($dfr-config, 'font' + $map), "padding-top")};
+        margin-bottom: #{map-get(map-get($dfr-config, 'font' + $map), "margin-bottom")};
+    }
+}
+
+// REGULAR FONT TYPE GENERATOR (doesn't contain the sassline template)
+@for $i from 1 to $config-length {
+    $map: #{$i};
+
+    .#{'B-' + map-get(map-get($dfr-config, 'font' + $map), "name")} {
+        font-family: #{map-get(map-get($dfr-config, 'font' + $map), "font-family")};
+        font-weight: #{map-get(map-get($dfr-config, 'font' + $map), "font-weight")};
+        font-size: #{map-get(map-get($dfr-config, 'font' + $map), "font-size")};
+        line-height: #{map-get(map-get($dfr-config, 'font' + $map), "line-height")};
+    }
+}
